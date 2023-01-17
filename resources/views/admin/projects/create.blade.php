@@ -29,6 +29,25 @@
             </select>
         </div>
         <div class="mb-3">
+            <div class="mb-3">
+                <label for="technologies" class="form-label">Technologies</label>
+                <select multiple class="form-select form-select-lg" name="technologies[]" id="technologies">
+                    <option value="" disabled>Select a technology</option>
+                    @forelse ($technologies as $technology)
+                        @if ($errors->any())
+                            <option value="{{ $technology->id }}"
+                                {{ in_array($technology->id, old('technologies', [])) ? 'selected' : '' }}>
+                                {{ $technology->name }}</option>
+                        @else
+                            <option value="{{ $technology->id }}">{{ $technology->name }}</option>
+                        @endif
+                    @empty
+                        <option value="" disabled>Sorry 😥 no technologies in the system</option>
+                    @endforelse
+                </select>
+            </div>
+        </div>
+        <div class="mb-3">
             <label for="description" class="form-label">Description</label>
             <input type="text" name="description" id="description"
                 class="form-control @error('description') is-invalid @enderror" placeholder="Insert text"
