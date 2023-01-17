@@ -48,7 +48,7 @@
                                 {{ in_array($technology->id, old('technologies', [])) ? 'selected' : '' }}>
                                 {{ $technology->name }}</option>
                         @else
-                            <!-- Pagina caricate per la prima volta: deve mostrarare i tag preseleziononati dal db -->
+                            <!-- Pagina caricate per la prima volta: deve mostrare i tag preseleziononati dal db -->
                             <option value="{{ $technology->id }}"
                                 {{ $project->technologies->contains($technology->id) ? 'selected' : '' }}>
                                 {{ $technology->name }}</option>
