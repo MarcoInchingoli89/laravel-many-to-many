@@ -38,6 +38,30 @@
             </select>
         </div>
         <div class="mb-3">
+            <div class="mb-3">
+                <label for="technologies" class="form-label">Technologies</label>
+                <select multiple class="form-select form-select" name="technologies[]" id="technologies">
+                    <option value="" disabled>Select a technology</option>
+                    @forelse ($technologies as $technology)
+                        @if ($errors->any())
+                            <option value="{{ $technology->id }}"
+                                {{ in_array($technology->id, old('technologies', [])) ? 'selected' : '' }}>
+                                {{ $technology->name }}</option>
+                        @else
+                            <!-- Pagina caricate per la prima volta: deve mostrarare i tag preseleziononati dal db -->
+                            <option value="{{ $technology->id }}"
+                                {{ $project->technologies->contains($technology->id) ? 'selected' : '' }}>
+                                {{ $technology->name }}</option>
+                        @endif
+                    @empty
+                        <option value="" disabled>Sorry 😥 no technologies in the system</option>
+                    @endforelse
+                </select>
+                <small id="technologiesHelper" class="text-muted">Left click on mouse to select, for multiple selection left
+                    click + Ctrl on options, deselect an option with left click + Ctrl to an option</small>
+            </div>
+        </div>
+        <div class="mb-3">
             <label for="description" class="form-label">Description</label>
             <input type="text" name="description" id="description"
                 class="form-control @error('description') is-invalid @enderror" placeholder="Insert text"

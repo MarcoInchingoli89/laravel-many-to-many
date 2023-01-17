@@ -14,6 +14,18 @@
             {{ $project->type ? $project->type->name : 'Uncategorized' }}
         </div>
 
+        <div class="technologies">
+            <strong>Technologies:</strong>
+            @if (count($project->technologies) > 0)
+                @foreach ($project->technologies as $technology)
+                    <span>#{{ $technology->name }} </span>
+                @endforeach
+            @else
+                <span>Not technology associated to the current project</span>
+            @endif
+
+        </div>
+
         <div class="content">
             <strong>Description:</strong>
             {{ $project->description }}

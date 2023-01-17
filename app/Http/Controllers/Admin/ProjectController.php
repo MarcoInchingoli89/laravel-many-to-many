@@ -81,7 +81,8 @@ class ProjectController extends Controller
     {
 
         $types = Type::all();
-        return view('admin.projects.edit', compact('project', 'types'));
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -105,6 +106,13 @@ class ProjectController extends Controller
             $val_data['cover_image'] = $cover_image;
         }
         $project->update($val_data);
+
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($val_data['technologies']);
+        } else {
+            $project->technologies()->sync([]);
+        }
+
         return to_route('admin.projects.index')->with('message', "Project id: $project->id, $project->title updated succesfully!");
     }
 
