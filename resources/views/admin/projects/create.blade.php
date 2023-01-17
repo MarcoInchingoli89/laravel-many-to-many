@@ -27,11 +27,12 @@
                 @endforeach
 
             </select>
+            <small id="typesHelper" class="text-muted">Select a project type</small>
         </div>
         <div class="mb-3">
             <div class="mb-3">
                 <label for="technologies" class="form-label">Technologies</label>
-                <select multiple class="form-select form-select-lg" name="technologies[]" id="technologies">
+                <select multiple class="form-select form-select" name="technologies[]" id="technologies">
                     <option value="" disabled>Select a technology</option>
                     @forelse ($technologies as $technology)
                         @if ($errors->any())
@@ -45,6 +46,8 @@
                         <option value="" disabled>Sorry 😥 no technologies in the system</option>
                     @endforelse
                 </select>
+                <small id="technologiesHelper" class="text-muted">Left click on mouse to select, for multiple selection left
+                    click + Ctrl on options, deselect an option with left click + Ctrl to an option</small>
             </div>
         </div>
         <div class="mb-3">
